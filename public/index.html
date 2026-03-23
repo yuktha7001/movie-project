@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Reviews | Semester Project</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #1a1a1a; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .movie-card { border-left: 4px solid #007bff; background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .movie-name { font-weight: bold; color: #007bff; display: block; margin-bottom: 5px; }
+        form { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
+        input, textarea { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+        button { background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Portfolio</h1>
+        <div id="reviews-list"></div>
+
+        <form action="/api/reviews" method="POST">
+            <h3>Add a Review</h3>
+            <input type="text" name="movie" placeholder="Movie Name" required>
+            <textarea name="review" placeholder="Write your review here..." rows="3" required></textarea>
+            <button type="submit">Post Review</button>
+        </form>
+    </div>
+
+    <script>
+        fetch('/api/reviews')
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById('reviews-list');
+                data.forEach(item => {
+                    list.innerHTML += `
+                        <div class="movie-card">
+                            <span class="movie-name">${item.movie_name}</span>
+                            <span>${item.review_text}</span>
+                        </div>`;
+                });
+            });
+    </script>
+</body>
+</html>
