@@ -3,42 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Reviews | Semester Project</title>
+    <title>Cinema Aura | Yuktha's Portfolio</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #1a1a1a; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .movie-card { border-left: 4px solid #007bff; background: #f8f9fa; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .movie-name { font-weight: bold; color: #007bff; display: block; margin-bottom: 5px; }
-        form { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
-        input, textarea { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
-        button { background: #007bff; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        button:hover { background: #0056b3; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white; padding: 40px 20px; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .glass-container { 
+            width: 100%; max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            margin-bottom: 50px;
+        }
+        h1 { text-align: center; margin-bottom: 30px; letter-spacing: 4px; font-weight: 700; color: #00d2ff; }
+        .movie-section {
+            margin-bottom: 25px; background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px; padding: 20px; border-left: 5px solid #00d2ff;
+        }
+        .movie-title { font-size: 1.3rem; color: #00d2ff; margin-bottom: 10px; font-weight: bold; }
+        .review-item { 
+            background: rgba(0, 0, 0, 0.3); padding: 12px; margin: 8px 0;
+            border-radius: 8px; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.05);
+        }
+        form { 
+            margin-top: 40px; background: rgba(255, 255, 255, 0.1);
+            padding: 30px; border-radius: 20px; display: flex; flex-direction: column; gap: 15px;
+        }
+        select, textarea, button { padding: 15px; border-radius: 10px; border: none; font-size: 1rem; }
+        select, textarea { background: rgba(255, 255, 255, 0.9); color: #333; width: 100%; }
+        button { 
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white;
+            font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,210,255,0.4); }
+
+        /* FOOTER DESIGN */
+        footer {
+            width: 100%; max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px; padding: 30px;
+            text-align: center; margin-top: auto;
+        }
+        .footer-name { font-size: 1.5rem; font-weight: bold; color: #00d2ff; margin-bottom: 10px; }
+        .skills { font-size: 0.85rem; color: #aaa; margin-bottom: 15px; line-height: 1.6; }
+        .contact-links a {
+            color: white; text-decoration: none; margin: 0 10px;
+            font-size: 0.9rem; border-bottom: 1px solid transparent; transition: 0.3s;
+        }
+        .contact-links a:hover { color: #00d2ff; border-bottom: 1px solid #00d2ff; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Movie Portfolio</h1>
-        <div id="reviews-list"></div>
-
+    <div class="glass-container">
+        <h1>CINEMA AURA</h1>
+        <div id="display-area">Loading...</div>
         <form action="/api/reviews" method="POST">
-            <h3>Add a Review</h3>
-            <input type="text" name="movie" placeholder="Movie Name" required>
-            <textarea name="review" placeholder="Write your review here..." rows="3" required></textarea>
+            <h3 style="margin-bottom: 5px;">Submit Review</h3>
+            <select name="movie" required>
+                <option value="Inception">Inception</option>
+                <option value="Interstellar">Interstellar</option>
+                <option value="The Dark Knight">The Dark Knight</option>
+                <option value="Pulp Fiction">Pulp Fiction</option>
+                <option value="The Matrix">The Matrix</option>
+            </select>
+            <textarea name="review" placeholder="Write your review..." rows="3" required></textarea>
             <button type="submit">Post Review</button>
         </form>
     </div>
+
+    <footer>
+        <div class="footer-name">Yuktha</div>
+        <div class="skills">
+            C Programming • MySQL • R Programming • MongoDB • CSS • HTML • JavaScript
+        </div>
+        <div class="contact-links">
+            <a href="mailto:itsyuktha26@gmail.com">itsyuktha26@gmail.com</a> |
+            <a href="https://www.linkedin.com/in/yuktha-m-308a7a3a0" target="_blank">LinkedIn Profile</a>
+        </div>
+    </footer>
 
     <script>
         fetch('/api/reviews')
             .then(res => res.json())
             .then(data => {
-                const list = document.getElementById('reviews-list');
-                data.forEach(item => {
-                    list.innerHTML += `
-                        <div class="movie-card">
-                            <span class="movie-name">${item.movie_name}</span>
-                            <span>${item.review_text}</span>
+                const displayArea = document.getElementById('display-area');
+                displayArea.innerHTML = '';
+                const movies = ['Inception', 'Interstellar', 'The Dark Knight', 'Pulp Fiction', 'The Matrix'];
+                movies.forEach(m => {
+                    const filtered = data.filter(r => r.movie_name === m);
+                    let reviewsHTML = filtered.map(r => `<div class="review-item">"${r.review_text}"</div>`).join('');
+                    if(filtered.length === 0) reviewsHTML = '<div style="opacity:0.4; font-size:0.8rem;">No reviews yet.</div>';
+                    displayArea.innerHTML += `
+                        <div class="movie-section">
+                            <div class="movie-title">${m}</div>
+                            ${reviewsHTML}
                         </div>`;
                 });
             });

@@ -17,15 +17,15 @@ const db = mysql.createConnection({
     ssl: { minVersion: 'TLSv1.2', rejectUnauthorized: true }
 });
 
-// Get Reviews from Database
+// GET ALL REVIEWS
 app.get('/api/reviews', (req, res) => {
-    db.query('SELECT * FROM reviews', (err, results) => {
+    db.query('SELECT * FROM reviews ORDER BY id DESC', (err, results) => {
         if (err) return res.status(500).send(err);
         res.json(results);
     });
 });
 
-// Save a New Review to Database
+// POST NEW REVIEW
 app.post('/api/reviews', (req, res) => {
     const { movie, review } = req.body;
     db.query('INSERT INTO reviews (movie_name, review_text) VALUES (?, ?)', [movie, review], (err) => {
