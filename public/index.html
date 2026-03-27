@@ -3,109 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinema Aura | Yuktha's Portfolio</title>
+    <title>Yuktha | Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { 
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: white; padding: 40px 20px; min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
+            background: radial-gradient(circle at top right, #1e2a4a, #0f0c29);
+            color: white; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start;
+            padding: 40px 20px; line-height: 1.6;
         }
-        .glass-container { 
-            width: 100%; max-width: 800px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            margin-bottom: 50px;
-        }
-        h1 { text-align: center; margin-bottom: 30px; letter-spacing: 4px; font-weight: 700; color: #00d2ff; }
-        .movie-section {
-            margin-bottom: 25px; background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px; padding: 20px; border-left: 5px solid #00d2ff;
-        }
-        .movie-title { font-size: 1.3rem; color: #00d2ff; margin-bottom: 10px; font-weight: bold; }
-        .review-item { 
-            background: rgba(0, 0, 0, 0.3); padding: 12px; margin: 8px 0;
-            border-radius: 8px; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.05);
-        }
-        form { 
-            margin-top: 40px; background: rgba(255, 255, 255, 0.1);
-            padding: 30px; border-radius: 20px; display: flex; flex-direction: column; gap: 15px;
-        }
-        select, textarea, button { padding: 15px; border-radius: 10px; border: none; font-size: 1rem; }
-        select, textarea { background: rgba(255, 255, 255, 0.9); color: #333; width: 100%; }
-        button { 
-            background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white;
-            font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase;
-        }
-        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,210,255,0.4); }
 
-        /* FOOTER DESIGN */
-        footer {
-            width: 100%; max-width: 800px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+        .glass-container {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px; padding: 30px;
-            text-align: center; margin-top: auto;
+            border-radius: 40px; padding: 60px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            max-width: 1100px; width: 100%;
         }
-        .footer-name { font-size: 1.5rem; font-weight: bold; color: #00d2ff; margin-bottom: 10px; }
-        .skills { font-size: 0.85rem; color: #aaa; margin-bottom: 15px; line-height: 1.6; }
-        .contact-links a {
-            color: white; text-decoration: none; margin: 0 10px;
-            font-size: 0.9rem; border-bottom: 1px solid transparent; transition: 0.3s;
+
+        .hidden { display: none !important; }
+
+        /* Header Section */
+        header { 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+            padding-bottom: 40px; margin-bottom: 40px; 
+            display: flex; align-items: center; gap: 35px;
         }
-        .contact-links a:hover { color: #00d2ff; border-bottom: 1px solid #00d2ff; }
+        .profile-pic {
+            width: 140px; height: 140px;
+            border-radius: 30px; border: 2px solid #00d2ff;
+            object-fit: cover; box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+        }
+        .header-text h1 { font-size: 3.5rem; color: #00d2ff; text-transform: uppercase; letter-spacing: -1px; line-height: 1; }
+        .header-text .degree { color: #3a7bd5; font-weight: 600; font-size: 1.2rem; margin-top: 10px; }
+
+        /* Content Grid */
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; }
+        @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } header { flex-direction: column; text-align: center; } }
+
+        h2 { font-size: 1.6rem; color: #00d2ff; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        p { color: rgba(255,255,255,0.7); margin-bottom: 20px; }
+
+        /* Section Cards */
+        .card { 
+            background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px; padding: 30px; margin-bottom: 30px;
+        }
+        
+        .experience-item, .edu-item { margin-bottom: 20px; padding-left: 15px; border-left: 2px solid #3a7bd5; }
+        .item-title { font-weight: 700; color: white; }
+        .item-sub { font-size: 0.85rem; color: #00d2ff; margin-bottom: 5px; }
+
+        .skill-tag {
+            display: inline-block; background: rgba(0, 210, 255, 0.1);
+            color: #00d2ff; padding: 5px 12px; border-radius: 8px;
+            font-size: 0.8rem; margin: 0 5px 10px 0; border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+
+        /* Buttons */
+        .btn-view-project {
+            width: 100%; background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            color: white; padding: 15px; border-radius: 15px; font-weight: 700;
+            border: none; cursor: pointer; transition: 0.3s; text-transform: uppercase;
+        }
+        .btn-view-project:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,210,255,0.4); }
+
+        .back-btn { background: rgba(255,255,255,0.1); color: white; padding: 10px 20px; border-radius: 12px; cursor: pointer; margin-bottom: 30px; display: inline-block; font-weight: 600; }
+
+        /* Movie App Styles */
+        .movie-section { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 18px; margin-bottom: 20px; border-left: 5px solid #00d2ff; }
+        .movie-title { font-size: 1.3rem; color: #00d2ff; font-weight: 700; margin-bottom: 10px; }
+        .review-item { background: rgba(255,255,255,0.03); padding: 12px; margin: 8px 0; border-radius: 10px; font-size: 0.9rem; }
+
+        form { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 25px; display: flex; flex-direction: column; gap: 15px; }
+        select, textarea, .btn-post { padding: 15px; border-radius: 12px; border: none; font-size: 1rem; }
+        .btn-post { background: #00d2ff; color: #0f0c29; font-weight: 700; cursor: pointer; }
     </style>
 </head>
 <body>
+
     <div class="glass-container">
-        <h1>CINEMA AURA</h1>
-        <div id="display-area">Loading...</div>
-        <form action="/api/reviews" method="POST">
-            <h3 style="margin-bottom: 5px;">Submit Review</h3>
-            <select name="movie" required>
-                <option value="Inception">Inception</option>
-                <option value="Interstellar">Interstellar</option>
-                <option value="The Dark Knight">The Dark Knight</option>
-                <option value="Pulp Fiction">Pulp Fiction</option>
-                <option value="The Matrix">The Matrix</option>
-            </select>
-            <textarea name="review" placeholder="Write your review..." rows="3" required></textarea>
-            <button type="submit">Post Review</button>
-        </form>
+        
+        <div id="portfolio-view">
+            <header>
+                <img src="photo.jpg" alt="Yuktha" class="profile-pic" onerror="this.src='https://via.placeholder.com/140'">
+                <div class="header-text">
+                    <h1>Yuktha</h1>
+                    <p class="degree">BSc in Artificial Intelligence and Machine Learning | Kristu Jayanti College</p>
+                </div>
+            </header>
+
+            <div class="content-grid">
+                <div class="main-info">
+                    <h2>👤 Professional Summary</h2>
+                    <p>Dedicated AI/ML student with a strong foundation in full-stack web development. Passionate about bridging the gap between intelligent algorithms and user-centric design. Currently focusing on developing scalable web applications using Node.js and cloud-based databases.</p>
+
+                    <h2>💼 Projects & Experience</h2>
+                    <div class="experience-item">
+                        <div class="item-title">Full Stack Developer | Cinema Aura Project</div>
+                        <div class="item-sub">March 2026 - Present</div>
+                        <p style="font-size: 0.9rem;">Architected a movie review platform using Node.js and TiDB. Implemented SPA architecture for seamless navigation and real-time review updates.</p>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-title">AI Research Project | Academic Coursework</div>
+                        <div class="item-sub">Jan 2026 - Feb 2026</div>
+                        <p style="font-size: 0.9rem;">Analyzed dataset patterns using R programming to predict consumer behavior trends in the entertainment industry.</p>
+                    </div>
+
+                    <h2>🎓 Education</h2>
+                    <div class="edu-item">
+                        <div class="item-title">Bachelor of Science in AI & ML</div>
+                        <div class="item-sub">Kristu Jayanti College (Autonomous), Bengaluru</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-info">
+                    <div class="card">
+                        <h2>🛠 Technical Stack</h2>
+                        <div>
+                            <span class="skill-tag">HTML5/CSS3</span>
+                            <span class="skill-tag">JavaScript ES6</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">C Programming</span>
+                            <span class="skill-tag">R Language</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Git/GitHub</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>🚀 Live Project</h2>
+                        <p><strong>Cinema Aura</strong></p>
+                        <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 20px;">A full-stack movie review aggregator featuring cloud data persistence.</p>
+                        <button class="btn-view-project" onclick="toggleView('movies')">Launch Project →</button>
+                    </div>
+
+                    <div style="text-align: center; padding-top: 10px;">
+                        <p style="font-size: 0.9rem;">📧 <a href="mailto:itsyuktha26@gmail.com" style="color: #00d2ff; text-decoration: none;">itsyuktha26@gmail.com</a></p>
+                        <p style="font-size: 0.9rem;">🔗 <a href="https://www.linkedin.com/in/yuktha-m-308a7a3a0" target="_blank" style="color: #00d2ff; text-decoration: none;">LinkedIn Profile</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="movies-view" class="hidden">
+            <div class="back-btn" onclick="toggleView('portfolio')">← Back to Portfolio</div>
+            <h1 style="color: #00d2ff; text-align: center; font-size: 3rem; margin-bottom: 30px;">Cinema Aura</h1>
+            
+            <div id="display-area">Loading active reviews...</div>
+
+            <form id="reviewForm">
+                <h3 style="margin-bottom: 10px;">Contribute a Review</h3>
+                <select id="movieSelect" required>
+                    <option value="Inception">Inception</option>
+                    <option value="Interstellar">Interstellar</option>
+                    <option value="The Dark Knight">The Dark Knight</option>
+                    <option value="Pulp Fiction">Pulp Fiction</option>
+                    <option value="The Matrix">The Matrix</option>
+                </select>
+                <textarea id="reviewText" placeholder="Share your professional critique..." rows="4" required></textarea>
+                <button type="submit" class="btn-post">Post Review</button>
+            </form>
+        </div>
     </div>
 
-    <footer>
-        <div class="footer-name">Yuktha</div>
-        <div class="skills">
-            C Programming • MySQL • R Programming • MongoDB • CSS • HTML • JavaScript
-        </div>
-        <div class="contact-links">
-            <a href="mailto:itsyuktha26@gmail.com">itsyuktha26@gmail.com</a> |
-            <a href="https://www.linkedin.com/in/yuktha-m-308a7a3a0" target="_blank">LinkedIn Profile</a>
-        </div>
-    </footer>
-
     <script>
-        fetch('/api/reviews')
+        function toggleView(view) {
+            const pView = document.getElementById('portfolio-view');
+            const mView = document.getElementById('movies-view');
+            if (view === 'movies') {
+                pView.classList.add('hidden');
+                mView.classList.remove('hidden');
+                loadReviews();
+            } else {
+                mView.classList.add('hidden');
+                pView.classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const movie = document.getElementById('movieSelect').value;
+            const review = document.getElementById('reviewText').value;
+
+            fetch('/api/reviews', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ movie, review })
+            })
             .then(res => res.json())
             .then(data => {
-                const displayArea = document.getElementById('display-area');
-                displayArea.innerHTML = '';
-                const movies = ['Inception', 'Interstellar', 'The Dark Knight', 'Pulp Fiction', 'The Matrix'];
-                movies.forEach(m => {
-                    const filtered = data.filter(r => r.movie_name === m);
-                    let reviewsHTML = filtered.map(r => `<div class="review-item">"${r.review_text}"</div>`).join('');
-                    if(filtered.length === 0) reviewsHTML = '<div style="opacity:0.4; font-size:0.8rem;">No reviews yet.</div>';
-                    displayArea.innerHTML += `
-                        <div class="movie-section">
-                            <div class="movie-title">${m}</div>
-                            ${reviewsHTML}
-                        </div>`;
-                });
+                document.getElementById('reviewText').value = '';
+                loadReviews();
             });
+        });
+
+        function loadReviews() {
+            fetch('/api/reviews')
+                .then(res => res.json())
+                .then(data => {
+                    const area = document.getElementById('display-area');
+                    area.innerHTML = '';
+                    ['Inception', 'Interstellar', 'The Dark Knight', 'Pulp Fiction', 'The Matrix'].forEach(m => {
+                        const filtered = data.filter(r => r.movie_name === m);
+                        let reviewsHTML = filtered.map(r => `<div class="review-item">"${r.review_text}"</div>`).join('');
+                        area.innerHTML += `
+                            <div class="movie-section">
+                                <div class="movie-title">${m}</div>
+                                ${reviewsHTML || '<p style="opacity:0.3;font-size:0.7rem">No reviews submitted yet.</p>'}
+                            </div>`;
+                    });
+                });
+        }
     </script>
 </body>
 </html>
